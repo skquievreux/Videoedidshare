@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    height: 100vh;
+    gap: 20px;
+    padding: 20px;
+    background: #f0f2f5;
+}
+
+.video-panel {
+    flex: 3;
+    min-width: 70%;
+}
+
+.comments-panel {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.video-controls {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+#videoUrl {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.comment-input {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#commentText {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.comments-list {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.comment-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.comment-item:hover {
+    background: #e9ecef;
+}
+
+.timestamp {
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .video-panel,
+    .comments-panel {
+        width: 100%;
+        min-width: auto;
+    }
+}
