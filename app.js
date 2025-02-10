@@ -138,11 +138,20 @@ function handleUrlParams() {
     
     if (commentsParam) {
         try {
-            comments = JSON.parse(atob(commentsParam));
+            // URL-sicheres Base64 Decoding
+            const safeDecoded = decodeURIComponent(commentsParam);
+            const decoded = atob(safeDecoded.replace(/-/g, '+').replace(/_/g, '/'));
+            comments = JSON.parse(decoded);
+            
+            // UI und Player komplett aktualisieren
             updateCommentsUI();
-            updateMarkers();
+            player.markers.reset();
+            comments.forEach(comment => addMarker(comment));
+            player.markers.redraw();
+            
         } catch(e) {
-            console.error('Error loading comments:', e);
+            console.error('Fehler beim Laden der Kommentare:', e);
+            alert('Kommentare konnten nicht geladen werden: ' + e.message);
         }
     }
 }
@@ -155,10 +164,14 @@ function generateShareLink() {
     params.set('v', encodeURIComponent(videoUrl));
     
     if (comments.length > 0) {
-        params.set('c', btoa(JSON.stringify(comments)));
+        const commentsBase64 = btoa(JSON.stringify(comments))
+            .replace(/\+/g, '-')
+            .replace(/\//g, '_')
+            .replace(/=+$/, '');
+        params.set('c', commentsBase64);
     }
     
-    return `${window.location.origin}${window.location.pathname}?${params}`;
+    return `${window.location.origin}/index.html?${params}`;
 }
 
 function copyShareLink() {
