@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: videoedidshare
+  description: |
+    Videoedidshare ist eine Node.js-basierte Webanwendung zur Verwaltung und zum Teilen von Videoprojekten, entwickelt mit JavaScript, HTML und CSS.
+  annotations:
+    github.com/project-slug: skquievreux/Videoedidshare
+spec:
+  type: service
+  lifecycle: experimental
+  owner: guests
